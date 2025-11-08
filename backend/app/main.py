@@ -29,12 +29,6 @@ app.add_middleware(
 app.include_router(ingest.router)
 app.include_router(ws.router)
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @app.get("/info")
 def info():
