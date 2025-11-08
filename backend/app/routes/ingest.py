@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from hashlib import sha256
 from app.services.ingest_service import upsert_user, upsert_flight_session
-from app.main import get_db
+from app.db.session import get_db
 
 router = APIRouter(prefix="/ingest", tags=["ingest"])
 
