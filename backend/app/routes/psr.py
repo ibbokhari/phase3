@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from uuid import UUID
-from app.main import get_db
+from app.db.session import get_db
 from app.db.models import PSRRequest
 from datetime import datetime
 
