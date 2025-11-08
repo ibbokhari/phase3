@@ -3,7 +3,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 from app.routes import ingest, ws
+from app.routes import ingest, ws, psr
 import os
+
+app.include_router(ingest.router)
+app.include_router(ws.router)
+app.include_router(psr.router)
 
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql+psycopg2://user:pass@localhost:5432/phase3")
 engine = create_engine(DATABASE_URL)
