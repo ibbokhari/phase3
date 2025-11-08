@@ -35,3 +35,19 @@ class FlightSession(Base):
     pushed_by = Column(Text)
     pushed_at = Column(TIMESTAMP, default=datetime.utcnow)
     record_hash = Column(Text)
+    class PSRRequest(Base):
+    __tablename__ = "psr_request"
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    flight_session_id = Column(UUID(as_uuid=True), ForeignKey("flight_session.id"), nullable=False)
+    seat = Column(Text, nullable=False)
+    passenger_name = Column(Text, nullable=False)
+    meal_code = Column(Text, nullable=False)
+    title = Column(Text)
+    delivered = Column(Boolean, default=False)
+    comment = Column(Text)
+    pushed_at = Column(TIMESTAMP, default=datetime.utcnow)
+    source = Column(Text, default="Catrion")
+
+    # relationships
+    flight_session = relationship("FlightSession", backref="psr_requests")
+
